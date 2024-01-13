@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html body {
+  height: 100vh;
+  background-color: #131313;
+}
+
+.isFavorite svg {
+  fill: rgb(255, 214, 49);
+}
+
+@layer utilities {
+  .placeholder-lg::placeholder {
+    @apply text-3xl;
+  }
+}
+
+/* This will work for most modern browsers */
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  /* Firefox */
+}
