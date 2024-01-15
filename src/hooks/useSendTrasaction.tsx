@@ -6,7 +6,7 @@ import { sendTrasaction } from '../api/sendTransaction'
 export const useSendTransaction = () => {
   const { mutate, isLoading } = useMutation(sendTrasaction, {
     onSuccess: async () => {
-      toast.success('Transaction sent!')
+      toast.success('Transaction sent successfully')
     },
     onError: (error: unknown) => {
       toast.error('🙈 Something is wrong!')
