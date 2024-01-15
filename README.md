@@ -1,4 +1,4 @@
-# Swap challenge
+# Swap challenge 🚀
 
 Swap Challenge is a single-page application (SPA) built using ReactJS and Vite.js, simulating cryptocurrency token swapping. Users can select and "swap" mock tokens like Uniswap's swap interface.
 
@@ -21,7 +21,7 @@ A package manager like npm or Yarn
 To run this project locally, follow these steps:
 
 ```
-git clone https://your-repository-url.git
+git clone https://github.com/alexrobaina/swap-challenge.git
 cd swap-challenge
 ```
 
