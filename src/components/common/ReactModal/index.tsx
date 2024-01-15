@@ -43,7 +43,7 @@ export const ReactModal: FC<Props> = ({
       marginRight: '-50%',
       borderRadius: '4px',
       width: makeDinamicWidth(),
-      backgroundColor: '#f3faf8',
+      backgroundColor: '#131313',
       transform: 'translate(-50%, -50%)',
     },
     overlay: {
@@ -74,15 +74,23 @@ export const ReactModal: FC<Props> = ({
       >
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-2">
-            <h2 className="text-primary-950 font-medium">{title}</h2>
-            <p className="text-gray-500">{description}</p>
+            <h2
+              data-testid="modal-title"
+              className="text-primary-950 font-medium"
+            >
+              {title}
+            </h2>
+            <p data-testid="modal-description" className="text-gray-500">
+              {description}
+            </p>
           </div>
           {buttonClose && (
             <div
+              data-testid="modal-close-button"
               className="text-primary-950"
               role="button"
               onClick={closeModal}
-            ></div>
+            />
           )}
         </div>
         <div className="flex flex-col h-full">{children}</div>

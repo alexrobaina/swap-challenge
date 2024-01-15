@@ -8,14 +8,14 @@ interface Option {
   label: string
 }
 
-interface DropdownProps {
+interface BaseDropdownProps {
   placeholder?: string
   selectedOption?: Option
   options: Array<Option>
   onSelect: (option: Option) => void
 }
 
-export const DropdownCoin: FC<DropdownProps> = ({
+export const BaseDropdown: FC<BaseDropdownProps> = ({
   options,
   onSelect,
   selectedOption,
@@ -30,6 +30,8 @@ export const DropdownCoin: FC<DropdownProps> = ({
   }
 
   const handleClickOutside = (event: MouseEvent) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false)
     }
@@ -45,6 +47,7 @@ export const DropdownCoin: FC<DropdownProps> = ({
   return (
     <>
       <button
+        data-testid="dropdown-button"
         onClick={() => setIsOpen(!isOpen)}
         className={`z-0 flex items-center justify-between py-[2px] 
         ${
@@ -66,24 +69,32 @@ export const DropdownCoin: FC<DropdownProps> = ({
               />
             )}
             <span>{selectedOption.label}</span>
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore */}
             <IconChevronDown width={20} stroke="white" />
           </div>
         ) : (
           <div className="flex gap-2 items-center">
             <span className="text-md font-semibold">{placeholder}</span>
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore */}
             <IconChevronDown width={20} stroke="white" />
           </div>
         )}
       </button>
-      <div className="z-80" ref={dropdownRef}>
+      <div className="z-80" ref={dropdownRef} data-testid="dropdown-content">
         {isOpen && (
-          <ul className="absolute left-0 mt-4 w-full flex flex-col rounded-md shadow-lg bg-gray-800">
+          <ul
+            data-testid="dropdown-options"
+            className="absolute left-0 mt-4 w-full flex flex-col rounded-md shadow-2xl bg-background-800 "
+          >
             {options &&
               options.map(
                 (option: { id: string; img?: string; label: string }) => (
                   <li
-                    key={option.id}
                     role="option"
+                    key={option.id}
+                    data-testid={`dropdown-option-${option.id}`}
                     onClick={() => handleSelect(option as Option)}
                     className="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer"
                   >

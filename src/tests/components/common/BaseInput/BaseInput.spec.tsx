@@ -1,48 +1,44 @@
-import { describe, it, expect } from 'vitest'
+import { describe, test, expect } from 'vitest'
 
 import { BaseInput } from '../../../../components/common/BaseInput'
 import { render, screen, fireEvent } from '../../../test-utils'
 
-describe('BaseInput Component', () => {
-  it('renders with a placeholder', () => {
-    render(<BaseInput placeholder="Enter text" />)
-    expect(screen.getByPlaceholderText('Enter text')).toBeInTheDocument()
+describe('BaseInput', () => {
+  test('renders with correct label', () => {
+    render(<BaseInput label="Test Label" placeholder="Enter text" />)
+    expect(screen.getByTestId('input-label').textContent).toBe('Test Label')
   })
 
-  it('displays label when provided', () => {
-    const labelText = 'Test Label'
-    render(<BaseInput label={labelText} placeholder="Input" />)
-    expect(screen.getByText(labelText)).toBeInTheDocument()
-  })
-
-  it('displays error message when provided', () => {
-    const errorMessage = 'Error message'
-    render(<BaseInput error={errorMessage} placeholder="Input" />)
-    expect(screen.getByText(errorMessage)).toBeInTheDocument()
-  })
-
-  it('handles change event', () => {
+  test('calls handleChange on input change', () => {
     const handleChange = vi.fn()
-    render(<BaseInput placeholder="Input" handleChange={handleChange} />)
-    const input = screen.getByPlaceholderText('Input')
-    fireEvent.change(input, { target: { value: 'New value' } })
+    render(<BaseInput handleChange={handleChange} placeholder="Enter text" />)
+    const input = screen.getByTestId('text-input')
+    fireEvent.change(input, { target: { value: 'new value' } })
     expect(handleChange).toHaveBeenCalledTimes(1)
   })
 
-  it('renders with iconLeft when provided', () => {
-    const IconLeft = <span data-testid="icon-left">Icon</span>
-    render(<BaseInput iconLeft={IconLeft} placeholder="Input" />)
-    expect(screen.getByTestId('icon-left')).toBeInTheDocument()
+  test('displays error message', () => {
+    const errorMessage = 'Error message'
+    render(<BaseInput error={errorMessage} placeholder="Enter text" />)
+    expect(screen.getByTestId('error-message')).toBeTruthy()
+    expect(screen.getByText(errorMessage)).toBeTruthy()
   })
 
-  it('renders with iconRight when provided', () => {
-    const IconRight = <span data-testid="icon-right">Icon</span>
-    render(<BaseInput IconRight={IconRight} placeholder="Input" />)
-    expect(screen.getByTestId('icon-right')).toBeInTheDocument()
+  test('input is disabled when isdisabled is true', () => {
+    render(<BaseInput isdisabled placeholder="Enter text" />)
+    const input = screen.getByTestId('text-input')
+    expect(input).toBeDisabled()
   })
 
-  it('is disabled when isdisabled is true', () => {
-    render(<BaseInput placeholder="Input" isdisabled />)
-    expect(screen.getByPlaceholderText('Input')).toBeDisabled()
+  test('renders left icon when provided', () => {
+    const leftIcon = <span>Left Icon</span>
+    render(<BaseInput iconLeft={leftIcon} placeholder="Enter text" />)
+    expect(screen.getByTestId('icon-left')).toBeTruthy()
+  })
+
+  test('renders right icon when provided', () => {
+    const rightIcon = <span>Right Icon</span>
+    render(<BaseInput IconRight={rightIcon} placeholder="Enter text" />)
+    expect(screen.getByTestId('icon-right')).toBeTruthy()
   })
 })
