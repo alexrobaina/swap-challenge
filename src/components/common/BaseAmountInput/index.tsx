@@ -20,6 +20,7 @@ export const BaseAmountInput: FC<Props> = ({ value, onChange, label }) => (
       type="number"
       value={value}
       placeholder="0"
+      autoComplete="off"
       onChange={onChange}
       data-testid="number-input"
       className="block p-4 pl-4 w-full h-[120px] text-white bg-[#1b1b1b] rounded-lg text-4xl font-medium
