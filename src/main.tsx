@@ -13,16 +13,10 @@ const queryClient = new QueryClient()
 
 async function main() {
   const appContext: AppContextProps = observable({
-    session: { token: '' },
-    user: {
-      id: '',
-      email: '',
-    },
+    wallet: { address: '' },
   })
 
-  return ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement,
-  ).render(
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <App appContext={appContext} />

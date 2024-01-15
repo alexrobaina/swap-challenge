@@ -1,5 +1,6 @@
-import axios from 'axios'
 import { useState } from 'react'
+
+import { getCryptoPriceInUsd } from '../api/getCryptoPriceInUsd'
 
 export const useCalculateUsdValue = () => {
   const [pricePerCoin, setPricePerCoin] = useState<number>(0)
@@ -17,22 +18,4 @@ export const useCalculateUsdValue = () => {
   }
 
   return { calculateUsdValue, pricePerCoin }
-}
-
-interface CryptoPriceResponse {
-  [key: string]: {
-    usd: number
-  }
-}
-
-const getCryptoPriceInUsd = async (coinId: string): Promise<number> => {
-  try {
-    const response = await axios.get<CryptoPriceResponse>(
-      `https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd`,
-    )
-    return response.data[coinId].usd
-  } catch (error) {
-    console.error('Error fetching price:', error)
-    throw new Error('Failed to fetch price')
-  }
 }

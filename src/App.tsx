@@ -33,6 +33,7 @@ const App: FC<Props> = observer((props) => {
     <AppContext.Provider value={props.appContext}>
       <ToastContainer
         draggable
+        theme="dark"
         rtl={false}
         pauseOnHover
         hideProgressBar
