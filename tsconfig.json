@@ -6,7 +6,6 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "types": [
-      "cypress",
       "vitest/globals",
       "@testing-library/jest-dom",
       "@testing-library/react",
@@ -27,6 +26,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "tests", "cypress.config.ts", "vite.config.ts"],
+  "include": ["src", "tests", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
