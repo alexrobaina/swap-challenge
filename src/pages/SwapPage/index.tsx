@@ -86,9 +86,12 @@ export const SwapPage: FC = () => {
   }
 
   return (
-    <div className="flex justify-center">
+    <div data-testid="swap-component" className="flex justify-center">
       {context?.wallet?.address && (
-        <div className="absolute top-3 z-40 right-10 bg-primary-500 text-background-800 rounded-3xl px-3 py-2 flex items-center justify-center text-sm">
+        <div
+          data-testid="address"
+          className="absolute top-3 z-40 right-10 bg-primary-500 text-background-800 rounded-3xl px-3 py-2 flex items-center justify-center text-sm"
+        >
           {context?.wallet?.address}
         </div>
       )}
@@ -110,7 +113,10 @@ export const SwapPage: FC = () => {
           />
 
           {isLoading && (
-            <div className="mt-1 w-full ring-1 ring-gray-800 rounded-lg h-12">
+            <div
+              data-testid="send-transaction-loading"
+              className="mt-1 w-full ring-1 ring-gray-800 rounded-lg h-12"
+            >
               <div className="flex ml-3 items-center h-full text-gray-400 text-sm">
                 Send transaction...
               </div>
@@ -121,6 +127,7 @@ export const SwapPage: FC = () => {
             <BaseButton
               style="primary"
               height="h-[55px]"
+              testId="send-button"
               className="w-[300px]"
               onClick={handleSubmit}
               text={setNameButton(context?.wallet?.address || '')}
