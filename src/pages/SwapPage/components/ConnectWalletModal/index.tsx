@@ -42,7 +42,11 @@ export const ConnectWalletModal: FC<Props> = ({ handleCloseModal, isOpen }) => {
 
   return (
     <ReactModal isOpen={isOpen} closeModal={handleCloseModal}>
-      <form onSubmit={handleSubmit} className="flex flex-col">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col"
+        data-testid="connect-wallet-modal"
+      >
         <h1 className="text-2xl font-medium text-primary-50 col-span-full">
           Connect your wallet
         </h1>
@@ -56,8 +60,8 @@ export const ConnectWalletModal: FC<Props> = ({ handleCloseModal, isOpen }) => {
               name="address"
               label="Address"
               value={values.address}
-              placeholder="0x5F2913..."
               error={errors.address}
+              placeholder="0x5F2913..."
               handleChange={handleChange}
             />
           </div>

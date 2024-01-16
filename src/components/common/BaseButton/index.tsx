@@ -7,6 +7,7 @@ import './styles.css'
 
 interface Props {
   text?: string
+  testId?: string
   height?: string
   wFull?: boolean
   className?: string
@@ -24,6 +25,7 @@ export const BaseButton: FC<Props> = ({
   text,
   icon,
   wFull,
+  testId,
   height,
   isLoading,
   className,
@@ -45,6 +47,7 @@ export const BaseButton: FC<Props> = ({
     <button
       type={type}
       onClick={onClick}
+      data-testid={testId}
       disabled={isDisabled}
       style={{ backgroundColor }}
       className={`flex items-center justify-center gap-3 ${
